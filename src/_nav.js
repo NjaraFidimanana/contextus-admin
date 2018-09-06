@@ -10,6 +10,15 @@ export default {
       },
     },
     {
+      name: 'Simulation',
+      url: '/simulation',
+      icon: 'cui-audio-spectrum',
+      badge: {
+        variant: 'warning',
+        text: 'TEST',
+      },
+    },
+    {
       title: true,
       name: 'Segmentation',
       wrapper: {            // optional wrapper object

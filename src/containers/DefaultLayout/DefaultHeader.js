@@ -23,7 +23,7 @@ class DefaultHeader extends Component {
         <AppSidebarToggler className="d-lg-none" display="md" mobile />
         <AppNavbarBrand
           full={{ src: logo, height: 55, alt: 'Contextus Logo' }}
-          minimized={{ src: sygnet, width: 30, height: 30, alt: 'CoreUI Logo' }}
+          minimized={{ src: sygnet, width: 30, height: 30, alt: 'Contextus Logo' }}
         />
         <AppSidebarToggler className="d-md-down-none" display="lg" />
 
