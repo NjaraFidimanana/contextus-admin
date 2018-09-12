@@ -19,8 +19,15 @@ import { DefaultLayout } from './containers';
 import { Login, Page404, Page500, Register } from './views/Pages';
 
 // import { renderRoutes } from 'react-router-config';
-
+import config from 'react-global-configuration';
 class App extends Component {
+  constructor(props) {
+    super(props);
+      config.set({ 
+      //  BASE_SERVICE_URL: 'http://10.0.7.99:81'
+        BASE_SERVICE_URL: 'http://192.168.100.8:81'
+    });
+  }
   render() {
     return (
       <HashRouter>
@@ -35,5 +42,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;

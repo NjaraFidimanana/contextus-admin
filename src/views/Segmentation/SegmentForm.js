@@ -25,7 +25,8 @@ import {
     Label,
     Row,
   } from 'reactstrap';
-
+  import axios from 'axios';
+  import config from 'react-global-configuration';
   import SegmentModel from '../../models/SegmentModel';
 
   class SegmentForm extends Component {
@@ -40,6 +41,7 @@ import {
         segmentModel: new SegmentModel(),
         message:false
       };
+      this.baseState = this.state ;
       this._handleSubmit = this._handleSubmit.bind(this);
     }
 
@@ -55,17 +57,45 @@ import {
         console.log("Component will mount");
 
       }
+
+      resetForm = () => {
+        this.state.segmentModel.SegmentCode.value="";
+        this.state.segmentModel.SegmentValue.value="";
+        this.state.segmentModel.Expiration.value="";
+      }
+
       _handleSubmit(e){
         e.preventDefault();
-        
-       
+        console.log(this.state.segmentModel.SegmentCode.value);
 
-        console.log('Test',this.state.segmentModel.SegmentCode.value);
-
-        fetch('/api/form-submit-url', {
-            method: 'POST',
-            data: this.state.segmentModel,
-          });
+          axios({
+              url:config.get('BASE_SERVICE_URL')+'/api/Segment/SaveSegment',
+              method: 'post', 
+              headers: {
+               'Content-Type': 'application/json; v=1.0'
+              },
+             data: {
+              "SegmentedCode":this.state.segmentModel.SegmentCode.value,
+              "SegmentedValue":this.state.segmentModel.SegmentValue.value,
+              "Expiration":this.state.segmentModel.Expiration.value
+              }
+            }
+            )
+            .then(function (response) {
+                //handle success
+                if(response.data.statusCode===201)
+                {
+                  console.log("Insertedddddd");
+                  
+                }
+                
+                console.log(response);
+            })
+            .catch(function (response) {
+                console.log(response);
+            });
+     
+            this.resetForm();
       }
 
       render() {
@@ -73,7 +103,7 @@ import {
     <div className="animated fadeIn">
         <Row>
             <Col xs="12" sm="6">
-            <form onSubmit={this._handleSubmit}>
+            <form onSubmit={this._handleSubmit} id="segment-form">
             <Card>
               <CardHeader>
                 <strong>Add New Segment</strong>
@@ -84,8 +114,10 @@ import {
                 <Row>
                   <Col xs="12">
                     <FormGroup>
-                      <Label htmlFor="name">Code</Label>
-                      <input type="text" id="Code" placeholder="Enter the code" required  class="form-control"
+                      <Label htmlFor="Code">Code</Label>
+                      <input type="text" id="Code" placeholder="Enter the code" 
+  
+                      required  class="form-control"
                       
                       ref={(input) => this.state.segmentModel.SegmentCode = input}
                       />
@@ -95,7 +127,7 @@ import {
                 <Row>
                   <Col xs="12">
                     <FormGroup>
-                      <Label htmlFor="ccnumber">Segment value</Label>
+                      <Label htmlFor="SegmentValue">Segment value</Label>
                       <input type="text" id="SegmentValue" placeholder="Enter the value" required 
                       class="form-control"
                       ref={(input) => this.state.segmentModel.SegmentValue = input}
@@ -106,8 +138,9 @@ import {
                 <Row>
                   <Col xs="12">
                     <FormGroup>
-                      <Label htmlFor="ccmonth">Expiration</Label>
-                      <select type="select" name="cexpiration" id="cexpiration" class="form-control"                    
+                      <Label htmlFor="Cexpiration">Expiration</Label>
+                      <select type="select" name="Cexpiration" id="cexpiration" class="form-control"     
+            
                       ref={(input) => this.state.segmentModel.Expiration = input}
                       >
                         <option value="7">1 Week</option>

@@ -29,7 +29,7 @@ export default {
     },
     {
       name: 'Segments',
-      url: '',
+      url: '/segments',
       icon: 'icon-drop',
     },
     {
@@ -39,30 +39,22 @@ export default {
     },
     {
       title: true,
-      name: 'Contents Rules',
+      name: 'Business Rules',
       wrapper: {
         element: '',
         attributes: {},
       },
     },
     {
-      name: 'Default',
-      url: '/base',
+      name: 'Rules',
+      url: '/rules',
       icon: 'icon-puzzle'
     },
     {
-      name: 'Customs',
-      url: '/buttons',
+      name: 'Create Custom Rule',
+      url: '/create-rule',
       icon: 'icon-cursor',
     
-    },
-    {
-      title: true,
-      name: 'Personalization',
-      wrapper: {
-        element: '',
-        attributes: {},
-      },
     },
     {
       name: 'Components',
@@ -75,8 +67,8 @@ export default {
       icon: 'icon-star',
       children: [
         {
-          name: 'Login',
-          url: '/login',
+          name: 'Contents',
+          url: '/contents',
           icon: 'icon-star',
         },
         {

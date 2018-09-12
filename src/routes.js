@@ -187,9 +187,29 @@ const SegmentForm = Loadable({
   loader: () => import('./views/Segmentation/SegmentForm'),
   loading: Loading,
 });
+const Segments = Loadable({
+  loader: () => import('./views/Segmentation/Segments'),
+  loading: Loading,
+});
+
 
 const Simulation = Loadable({
   loader: () => import('./views/Pages/Simulation'),
+  loading: Loading,
+});
+
+const Contents = Loadable({
+  loader: () => import('./views/Pages/Contents'),
+  loading: Loading,
+});
+
+const CreateRule = Loadable({
+  loader: () => import('./views/Rules/RuleForm'),
+  loading: Loading,
+});
+
+const BusinessRules = Loadable({
+  loader: () => import('./views/Rules/BusinessRules'),
   loading: Loading,
 });
 
@@ -201,7 +221,12 @@ const routes = [
   { path: '/dashboard', name: 'Dashboard', component: Dashboard },
   { path: '/new/segment', exact: true, name: 'Segment Form', component: SegmentForm },
   { path: '/simulation', exact: true, name: 'Simulation', component: Simulation },
-
+  { path: '/segments', exact: true, name: 'Segments', component: Segments },
+  { path: '/contents', exact: true, name: 'Contents', component: Contents },
+  { path: '/create-rule', exact: true, name: 'Create Rule', component: CreateRule },
+  { path: '/rules', exact: true, name: 'Business Rules', component: BusinessRules },
+  
+  
 
   /////
 
